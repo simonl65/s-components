@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
         <Counter
-            ref="Counter1"
+            :reset="reset"
             class="col-sm-6 my-2 counter"
         />
         <Counter
-            ref="Counter2"
+            :reset="reset"
             class="col-sm-6 my-2 counter"
         />
     </div>
@@ -36,8 +36,7 @@ export default {
   methods: {
     resetAll() {
       console.log("reset sent");
-      this.$refs.Counter1.resetCount();
-      this.$refs.Counter2.resetCount();
+      this.reset = !this.reset;
     }
   }
 };
