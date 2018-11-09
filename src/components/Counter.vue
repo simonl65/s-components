@@ -1,9 +1,13 @@
 <template>
     <div class="counter">
         <div class="count--current"
-        >{{ currentCount }}</div>
-            <button class="btn col-6 btn-danger" @click="dec">-</button>
-            <button class="btn col-6 btn-success" @click="inc">+</button>
+        >
+            {{ currentCount }}
+        </div>
+        <button @click="dec" class="btn col-6 btn-danger">-</button>
+        <button @click="inc" class="btn col-6 btn-success">+</button>
+        <hr>
+        <button @click="resetCounter" class="btn btn-block btn-secondary">RESET</button>
     </div>
 </template>
 
@@ -26,6 +30,10 @@ export default {
 
     dec() {
       this.currentCount--;
+    },
+
+    resetCounter() {
+      _reset(this);
     }
   },
 
@@ -35,10 +43,14 @@ export default {
      */
     reset() {
       console.log("reset received");
-      this.currentCount = 0;
+      _reset(this);
     }
   }
 };
+
+function _reset(t) {
+  t.currentCount = 0;
+}
 </script>
 
 <style lang="scss" scoped>
