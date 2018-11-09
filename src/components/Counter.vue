@@ -1,6 +1,6 @@
 <template>
     <div class="counter">
-        <div :reset="reset" class="count--current"
+        <div class="count--current"
         >{{ currentCount }}</div>
             <button class="btn col-6 btn-danger" @click="dec">-</button>
             <button class="btn col-6 btn-success" @click="inc">+</button>
@@ -30,6 +30,9 @@ export default {
   },
 
   watch: {
+    /**
+     * When the "reset" signal CHANGES, reset the counter.
+     */
     reset() {
       console.log("reset received");
       this.currentCount = 0;

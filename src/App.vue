@@ -13,7 +13,7 @@
     <div class="row">
         <button
             @click="resetAll"
-            class="btn btn-block btn-danger"
+            class="btn btn-block btn-primary"
         >RESET ALL</button>
     </div>
   </div>
@@ -34,9 +34,13 @@ export default {
   },
 
   methods: {
+    /**
+     * Update the reset "signal" so all watching components know to reset their
+     * counters when this signal changes.
+     */
     resetAll() {
       console.log("reset sent");
-      this.reset = !this.reset;
+      this.reset = Date.now();
     }
   }
 };
