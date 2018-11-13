@@ -2,7 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 my-2">
-        <Counter :reset="reset" />
+        <Counter
+          :reset="reset"
+          class="first-counter"
+        />
       </div>
       <div class="col-sm-6 my-2">
         <Counter :reset="reset" />
@@ -59,11 +62,13 @@ body {
   border: 1px solid $BrightYellow;
   border-radius: 10px;
 
-  /*
-    Target all except first counter:
-  */
-  & ~ .counter {
-    border: 2px solid red !important;
+  &:first-child {
+    background: red;
+  }
+
+  &:not(.first-counter) {
+    background: greenyellow;
+    border: 2px dashed red;
   }
 
   /*
