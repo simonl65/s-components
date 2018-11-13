@@ -1,19 +1,36 @@
 <template>
-    <div class="counter">
-        <div class="count--current"
-        >
-            {{ currentCount }}
-        </div>
-        <button @click="dec" class="btn col-6 btn-danger">-</button>
-        <button @click="inc" class="btn col-6 btn-success">+</button>
-        <hr>
-        <button @click="resetCounter" class="btn btn-block btn-secondary">RESET</button>
+  <div class="counter">
+    <div
+      class="count--current"
+    >
+      {{ currentCount }}
     </div>
+    <button
+      class="btn col-6 btn-danger"
+      @click="dec"
+    >-</button>
+    <button
+      class="btn col-6 btn-success"
+      @click="inc"
+    >+</button>
+    <hr>
+    <button
+      class="btn btn-block btn-secondary"
+      @click="resetCounter"
+    >RESET</button>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "counter",
+  name: "Counter",
+
+  props: {
+    reset: {
+      type: Number,
+      default: Date.now()
+    }
+  },
 
   data() {
     return {
@@ -21,7 +38,15 @@ export default {
     };
   },
 
-  props: ["reset"],
+  watch: {
+    /**
+     * When the "reset" signal CHANGES, reset the counter.
+     */
+    reset() {
+      console.log("reset received");
+      _reset(this);
+    }
+  },
 
   methods: {
     inc() {
@@ -33,16 +58,6 @@ export default {
     },
 
     resetCounter() {
-      _reset(this);
-    }
-  },
-
-  watch: {
-    /**
-     * When the "reset" signal CHANGES, reset the counter.
-     */
-    reset() {
-      console.log("reset received");
       _reset(this);
     }
   }

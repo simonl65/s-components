@@ -1,26 +1,30 @@
 <template>
   <div class="container">
     <div class="row">
-        <Counter
-            :reset="reset"
-            class="col-sm-6 my-2 counter"
-        />
-        <Counter
-            :reset="reset"
-            class="col-sm-6 my-2 counter"
-        />
+      <div class="col-sm-6 my-2">
+        <Counter :reset="reset" />
+      </div>
+      <div class="col-sm-6 my-2">
+        <Counter :reset="reset" />
+      </div>
+      <div class="col-sm-6 my-2">
+        <Counter :reset="reset" />
+      </div>
+      <div class="col-sm-6 my-2">
+        <Counter :reset="reset" />
+      </div>
     </div>
     <div class="row">
-        <button
-            @click="resetAll"
-            class="btn btn-block btn-primary"
-        >RESET ALL</button>
+      <button
+        class="btn btn-block btn-primary"
+        @click="resetAll"
+      >RESET ALL</button>
     </div>
   </div>
 </template>
 
 <script>
-import Counter from "./components/Counter.vue";
+import Counter from "@/components/Counter";
 
 export default {
   components: {
@@ -46,5 +50,28 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+body {
+  font-family: Arial, Lato, sans-serif;
+}
+
+.row div .counter {
+  border: 1px solid $BrightYellow;
+  border-radius: 10px;
+
+  /*
+    Target all except first counter:
+  */
+  & ~ .counter {
+    border: 2px solid red !important;
+  }
+
+  /*
+    Change inner padding of all .counter.col-*:
+  */
+  // &[class*="col-"] {
+  //   padding-left: 20px;
+  //   padding-right: 20px;
+  // }
+}
 </style>
